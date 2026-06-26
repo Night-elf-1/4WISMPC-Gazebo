@@ -1,0 +1,19 @@
+<launch>
+  <!-- 启动 Gazebo 小车仿真 + 参考路径发布 + rviz -->
+  <include file="$(find reference_path_publisher)/launch/car_model_with_ref_path.launch">
+    <arg name="x" value="10"/>
+    <arg name="y" value="0"/>
+    <arg name="z" value="0"/>
+  </include>
+
+  <!-- 启动 MPC 跟踪控制器 -->
+  <node pkg="fwis_mpc_controller" type="fwis_mpc_controller_node" name="fwis_mpc_controller" output="screen">
+    <param name="wheel_radius" value="0.15"/>
+    <param name="control_rate" value="20.0"/>
+    <param name="use_tf_for_state" value="true"/>
+    <param name="spawn_x" value="10.0"/>
+    <param name="spawn_y" value="0.0"/>
+    <param name="forward_window" value="80"/>
+    <param name="back_buffer" value="2"/>
+  </node>
+</launch>
