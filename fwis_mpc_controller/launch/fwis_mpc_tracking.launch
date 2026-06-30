@@ -1,0 +1,22 @@
+<launch>
+  <!-- 启动 Gazebo 小车仿真 + 参考路径发布 + rviz -->
+  <include file="$(find reference_path_publisher)/launch/car_model_with_ref_path.launch">
+    <arg name="x" value="10"/>
+    <arg name="y" value="0"/>
+    <arg name="z" value="0"/>
+  </include>
+
+  <!-- 启动 MPC 跟踪控制器 -->
+  <node pkg="fwis_mpc_controller" type="fwis_mpc_controller_node" name="fwis_mpc_controller" output="screen">
+    <param name="wheel_radius" value="0.15"/>
+    <!-- 当前 OSQP 求解约 145-160 ms，先以 5 Hz 运行为默认，避免 20 Hz 定时器堆积 -->
+    <param name="control_rate" value="5.0"/>
+    <param name="use_tf_for_state" value="true"/>
+    <!-- 该 Gazebo 模型四个轮子同向转动，前进时后轮指令无需取反 -->
+    <param name="rear_wheel_velocity_sign" value="1.0"/>
+    <param name="spawn_x" value="10.0"/>
+    <param name="spawn_y" value="0.0"/>
+    <param name="forward_window" value="80"/>
+    <param name="back_buffer" value="2"/>
+  </node>
+</launch>
