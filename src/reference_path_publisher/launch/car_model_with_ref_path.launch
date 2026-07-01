@@ -25,7 +25,7 @@
 
   <!-- 发布参考路径 -->
   <node pkg="reference_path_publisher" type="ref_path_publisher" name="ref_path_publisher" output="screen">
-    <param name="target_speed" value="1.5"/>
+    <param name="target_speed" value="3.0"/>
   </node>
 
   <!-- 启动 rviz：同时显示仿真小车与参考路径 -->
