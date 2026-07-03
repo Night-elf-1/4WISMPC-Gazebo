@@ -67,3 +67,9 @@ roslaunch fwis_mpc_controller fwis_mpc_tracking.launch
 roslaunch fwis_nonlinear_mpc_controller fwis_nonlinear_mpc_tracking.launch
 ```
 
+3.8 维 NMPC（四轮独立轮速/转角直接优化）启动：
+
+```bash
+roslaunch nmpc_4wisnew2 nmpc_4wisnew2_tracking.launch
+```
+
